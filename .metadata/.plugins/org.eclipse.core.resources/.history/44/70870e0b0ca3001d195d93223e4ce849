@@ -1,0 +1,5 @@
+package com.mtumer.entity;
+
+public class Product {
+
+}

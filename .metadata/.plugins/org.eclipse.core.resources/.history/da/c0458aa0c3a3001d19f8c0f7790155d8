@@ -1,0 +1,45 @@
+package com.mtumer.config;
+
+import org.springframework.amqp.core.Queue;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class RabbitConfig {
+
+	
+	@Value("${mtumer.rabbitmq.queue}")
+	String queueName;
+	
+	@Value("${mtumer.rabbitmq.exchange}")
+	String exchange;
+	
+	@Value("$mtumer.rabbitmq.routingkey")
+	private String routingKey;
+	
+	
+	@Bean
+	Queue queue() {
+		return new Queue(queueName, false);
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

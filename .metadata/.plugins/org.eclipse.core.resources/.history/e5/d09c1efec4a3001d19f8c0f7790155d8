@@ -1,0 +1,27 @@
+package com.mtumer.service;
+
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.mtumer.entity.Product;
+
+@Service
+public class RabbitSender {
+	
+	@Autowired
+	private AmqpTemplate rt;
+	
+	@Value("${mtumer.rabbutmq.exchange}")
+	private String exchange;
+	
+	@Value("${mtumer.rabbitmq.routingkey}")
+	private String routingkey;
+	
+	public void send(Product prd) {
+		rt.convertAndSend(exchange,routingkey,prd);
+		System.out.println("Send message " +prd);
+	}
+	
+}
